@@ -1,0 +1,30 @@
+app:
+  name: sample_auth_app
+  version: 0.0.1
+  http_host: 0.0.0.0
+  http_port: 8080
+  secret: super_secret
+  auth_exp_min: 5
+  auth_exp_refresh_min: 5
+
+db: 
+  user: postgres
+  password: postgres
+  host: postgres
+  port: 5432
+  database: sample_auth
+  timezone: Asia/Tehran
+  ssl_mode: disable
+  schema: public
+
+redis:
+  host: redis
+  port: 6379
+
+permify:
+  tenant_name: "sample_auth"
+  tenant_id: "sample_auth"
+  endpoint: "permify:3478"
+  schema_version: "1"
+  write_schema: true
+  schema_absolute_path: "app/app/schema.perm"

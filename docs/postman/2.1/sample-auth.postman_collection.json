@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "1bfe3c20-e344-400e-ba16-e02a403c74c0",
+		"name": "sample-auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33837245"
+	},
+	"item": [
+		{
+			"name": "auth Copy",
+			"item": [
+				{
+					"name": "sign-up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let res = pm.response.json();",
+									"",
+									"// Set the environment variable \"token\" to the accessToken from the response",
+									"pm.environment.set(\"token\", res.data.accessToken);",
+									"",
+									"// Optionally log it for debugging",
+									"console.log(\"Token set to:\", res.data.accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"reza\",\n    \"lastName\": \"mokaram\",\n    \"phone\": \"09156009412\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{base_url}}/api/{{api_version}}/sign-up",
+							"protocol": "http",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"sign-up"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"reza\",\n    \"lastName\": \"mokaram\",\n    \"phone\": \"09156009412\",\n    \"password\": \"123456789\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{base_url}}/api/{{api_version}}/sign-up",
+									"protocol": "http",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{api_version}}",
+										"sign-up"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 19:26:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ3Njc4NzEsIlVzZXJJRCI6OH0.5tMbvJ6LBdiNbvb3P47PXwr6pxWo0uWykhxRnbYb5FpCcB0061Xmw1qO0ktyf23irGwzxJ-RhkBvSLfoxLDQtw\",\n        \"refreshToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ3Njc4NzEsIlVzZXJJRCI6OH0.5tMbvJ6LBdiNbvb3P47PXwr6pxWo0uWykhxRnbYb5FpCcB0061Xmw1qO0ktyf23irGwzxJ-RhkBvSLfoxLDQtw\"\n    },\n    \"message\": \"successful\"\n}"
+						}
+					]
+				},
+				{
+					"name": "sign-in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"    // Check if the token exists in the response and set it in the environment variable",
+									"    if (jsonData.data.accessToken) { // Replace 'access_token' with the actual key for your token in the response",
+									"        pm.environment.set(\"token\", jsonData.data.accessToken);",
+									"    }"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"09156009412\",\n    \"password\": \"123456789\",\n    // otp printed in logs\n    \"otp\": \"796966\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{base_url}}/api/{{api_version}}/sign-in",
+							"protocol": "http",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"sign-in"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"09156009412\",\n    \"password\": \"123456789\",\n    \"otp\": \"395997\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{base_url}}/api/{{api_version}}/sign-in",
+									"protocol": "http",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{api_version}}",
+										"sign-in"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 19:49:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ3NjkyODEsIlVzZXJJRCI6MX0.ut-zr0SZZcKQx_8XZhIhh9iKXtfw9l7J6FCl4KeWDn8l3RQZ_UN3VhjWSlE9JY0Zsi45yX58nadXFlrV2rqIgw\",\n        \"refreshToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ3NjkyODEsIlVzZXJJRCI6MX0.ut-zr0SZZcKQx_8XZhIhh9iKXtfw9l7J6FCl4KeWDn8l3RQZ_UN3VhjWSlE9JY0Zsi45yX58nadXFlrV2rqIgw\"\n    },\n    \"message\": \"successful\"\n}"
+						}
+					]
+				},
+				{
+					"name": "send-otp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{base_url}}/api/{{api_version}}/send-otp?phone=09156009412",
+							"protocol": "http",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{api_version}}",
+								"send-otp"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": "09156009412"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{base_url}}/api/{{api_version}}/send-otp?phone=09156009412",
+									"protocol": "http",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{api_version}}",
+										"send-otp"
+									],
+									"query": [
+										{
+											"key": "phone",
+											"value": "09156009412"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 19:48:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "-",
+			"type": "string"
+		},
+		{
+			"key": "api_version",
+			"value": "v1",
+			"type": "string"
+		}
+	]
+}

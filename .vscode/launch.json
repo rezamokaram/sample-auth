@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Auth App",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/main.go",
+      "env": {
+        "CONFIG_PATH": "${workspaceFolder}/cmd/dev-config.yaml"
+      },
+      "args": []
+    }
+  ]
+}

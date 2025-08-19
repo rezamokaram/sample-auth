@@ -1,0 +1,22 @@
+app:
+  name: sample_auth_app
+  version: 0.0.1
+  http_host: 0.0.0.0
+  http_port: 8080
+  secret: super_secret
+  auth_exp_min: 5
+  auth_exp_refresh_min: 5
+
+db: 
+  user: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  database: sample_auth
+  timezone: Asia/Tehran
+  ssl_mode: disable
+  schema: public
+
+redis:
+  host: localhost
+  port: 6379

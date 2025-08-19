@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17.2-alpine3.21
+    container_name: sample_auth_postgres
+    hostname: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sample_auth
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "timezone=Asia/Tehran"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis: 
+    image: redis:7.4.1-alpine3.20 
+    container_name: sample_auth_redis
+    hostname: redis
+    restart: always
+    ports: 
+      - "6379:6379"
+
+  app:
+    build:
+      context: .
+      dockerfile: ./build/docker/Dockerfile
+    pull_policy: never
+    image: sample_auth_backend
+    container_name: sample_auth_backend
+    hostname: backend
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      postgres:
+        condition: "service_healthy"
+
+volumes:
+  postgres_data:
