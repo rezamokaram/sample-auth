@@ -20,11 +20,3 @@ db:
 redis:
   host: redis
   port: 6379
-
-permify:
-  tenant_name: "sample_auth"
-  tenant_id: "sample_auth"
-  endpoint: "permify:3478"
-  schema_version: "1"
-  write_schema: true
-  schema_absolute_path: "app/app/schema.perm"
